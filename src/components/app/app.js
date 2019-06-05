@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import './app.css';
 import RandomPlanet from "../random-planet";
 import PeoplePage from "../people-page";
+import ErrorButton from "../error-button";
+import ErrorIndicator from "../error-indicator";
 
 class App extends Component {
 
     state = {
         showRandomPlanet: true,
-        selectedPerson: 1
+        selectedPerson: 1,
+        hasError: false
     };
 
     toggleRandomPlanet = () => {
@@ -18,9 +21,16 @@ class App extends Component {
         });
     };
 
-
+    componentDidCatch() {
+        this.setState({
+            hasError: true
+        })
+    }
 
     render() {
+        if(this.state.hasError){
+            return <ErrorIndicator/>
+        }
         const planet = this.state.showRandomPlanet ?
             <RandomPlanet/> :
             null;
@@ -35,9 +45,8 @@ class App extends Component {
                         onClick={this.toggleRandomPlanet}>
                         Toggle Random Planet
                     </button>
+                    <ErrorButton />
                 </div>
-                <PeoplePage />
-                <PeoplePage />
                 <PeoplePage />
             </div>
         );

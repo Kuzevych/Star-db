@@ -3,7 +3,7 @@ import './header.css'
 const Header = () => {
     return (
         <div>
-            text
+            HEADER
         </div>
     )
 }

@@ -24,7 +24,6 @@ export default class PersonDetails extends Component {
         }
     }
 
-
     updatePerson(){
         const { personId } = this.props;
         if(!personId){
