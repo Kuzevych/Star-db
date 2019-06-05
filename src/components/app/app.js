@@ -33,9 +33,7 @@ class App extends Component {
         return (
             <div className="stardb-app">
                 {/*<Header />*/}
-
                 { planet }
-
                 <button
                     className="toggle-planet btn btn-warning btn-lg"
                     onClick={this.toggleRandomPlanet}>
@@ -50,6 +48,7 @@ class App extends Component {
                         <PersonDetails personId={this.state.selectedPerson} />
                     </div>
                 </div>
+
             </div>
         );
     }
