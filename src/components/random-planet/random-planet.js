@@ -7,6 +7,7 @@ import ErrorIndicator from '../error-indicator';
 
 class RandomPlanet extends Component {
     swapiService = new SwapiService();
+
     state = {
         planet: {},
         loading: true,
@@ -15,7 +16,12 @@ class RandomPlanet extends Component {
 
     componentDidMount() {
         this.updatePlanet();
-        setInterval(this.updatePlanet, 2000);
+        this.interval = setInterval(this.updatePlanet, 2000);
+
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onPlanetLoaded = (planet) => {
@@ -30,10 +36,10 @@ class RandomPlanet extends Component {
             error: true,
             loading: false
         })
-    }
+    };
 
     updatePlanet =() =>{
-        const id = Math.floor(Math.random()*25)+2;
+        const id = Math.floor(Math.random()*(25-2)+2);
         //const id = 12000;
         this.swapiService
             .getPlanet(id)
