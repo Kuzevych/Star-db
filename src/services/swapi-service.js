@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 export default class SwapiService extends Component{
     _apiBased = 'https://swapi.co/api';
-
+    _imageBased='https://starwars-visualguide.com/assets/img'
     getResource = async(url) =>{
         const res = await fetch(`${this._apiBased}${url}`);
         if (!res.ok) {
@@ -40,6 +40,18 @@ export default class SwapiService extends Component{
     getStarship = async( id)=>{
         const starship = await this.getResource(`/starships/${id}/`)
     return this._transformStarship(starship);
+    };
+
+    getPersonImage = ({id}) =>{
+        return `${this._imageBased}/characters/${id}.jpg`
+    };
+
+    getStarshipImage = ({id}) =>{
+        return `${this._imageBased}/starships/${id}.jpg`
+    };
+
+    getPlanetImage = ({id}) =>{
+        return `${this._imageBased}/planets/${id}.jpg`
     };
 
     _extractId = (item) => {
