@@ -57,8 +57,7 @@ export default class ItemDetails extends Component {
         if (!this.state.item) {
             return <Spinner/>;
         }
-        const { id, name, gender,
-            birthYear, eyeColor } = item;
+        const { name } = item;
 
         return (
             <div className="person-details card">

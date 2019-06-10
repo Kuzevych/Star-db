@@ -2,14 +2,24 @@ import React, {Component} from 'react';
 import './app.css';
 import SwapiService from '../../services/swapi-service';
 import RandomPlanet from "../random-planet";
-import PeoplePage from "../people-page";
+// import PeoplePage from "../people-page";
 // import ErrorButton from "../error-button";
 import ErrorIndicator from "../error-indicator";
 import ErrorBoundry from "../error-boundry";
 import Row from "../row";
-import ItemDetails, {Record} from '../item-details/item-details';
-import ItemList from "../item-list";
+// import ItemDetails, {Record} from '../item-details/item-details';
+// import ItemList from "../item-list";
 // import ItemDetails from "../item-details";
+import {
+    PersonList,
+    PlanetList,
+    StarshipList
+} from '../sw-components';
+import {
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails
+} from '../sw-components';
 
 class App extends Component {
 
@@ -42,67 +52,29 @@ class App extends Component {
             <RandomPlanet/> :
             null;
 
-        const {
-            getPerson,
-            getStarship,
-            getPersonImage,
-            getStarshipImage,
-            getPlanet,
-            getPlanetImage,
-            getAllPeople,
-            getAllPlanets
-        } = this.swapiService;
-
-        const personDetails = (
-            <ItemDetails
-                itemId={11}
-                getData={getPerson}
-                getImageUrl={getPersonImage}>
-                <Record field='gender' label='Gender'/>
-                <Record field='eyeColor' label='Eye Color'/>
-                <Record field='birthYear' label='Birth Year'/>
-            </ItemDetails>
-        );
-
-        const starshipDetails = (
-            <ItemDetails
-                itemId={5}
-                getData={getStarship}
-                getImageUrl={getStarshipImage}>
-                <Record field='model' label='Model'/>
-                <Record field='length' label='Length'/>
-                <Record field='costInCredits' label='Cost'/>
-            </ItemDetails>
-        );
-
-        const planetDetails = (
-            <ItemDetails
-                itemId={5}
-                getData={getPlanet}
-                getImageUrl={getPlanetImage}>
-                <Record field='population' label='Population'/>
-                <Record field='rotationPeriod' label='Rotation Period'/>
-                <Record field='diameter' label='Diameter'/>
-            </ItemDetails>
-        );
-
         return (
             <ErrorBoundry>
                 <div className="stardb-app">
                     {/*<Header/>*/}
                     {planet}
-                    <ItemList
-                        getData={getAllPeople}
-                        onItemSelected={()=>{}}>
-
+                    <PersonList>
                         {({name})=><span>{ name }</span>}
-                    </ItemList>
-                    <ItemList
-                        getData={getAllPlanets}
-                        onItemSelected={()=>{}}>
-
+                    </PersonList>
+                    <PersonDetails itemId={11}/>
+                    <StarshipList>
                         {({name})=><span>{ name }</span>}
-                    </ItemList>
+                    </StarshipList>
+                    <StarshipDetails itemId={5}/>
+                    <PlanetList>
+                        {({name})=><span>{ name }</span>}
+                    </PlanetList>
+                    <PlanetDetails itemId={14}/>
+                    {/*<ItemList*/}
+                    {/*    getData={getAllPlanets}*/}
+                    {/*    onItemSelected={()=>{}}>*/}
+
+                    {/*    {({name})=><span>{ name }</span>}*/}
+                    {/*</ItemList>*/}
 
                     {/*<div className='row mb-2 button-row'>*/}
                     {/*    <button*/}
