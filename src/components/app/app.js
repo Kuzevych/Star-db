@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import './app.css';
 import SwapiService from '../../services/swapi-service';
 import RandomPlanet from "../random-planet";
-// import PeoplePage from "../people-page";
+import PeoplePage from "../people-page";
 // import ErrorButton from "../error-button";
 import ErrorIndicator from "../error-indicator";
 import ErrorBoundry from "../error-boundry";
 import Row from "../row";
 import ItemDetails, {Record} from '../item-details/item-details';
-//import ItemList from "../item-list";
+import ItemList from "../item-list";
 // import ItemDetails from "../item-details";
 
 class App extends Component {
@@ -48,7 +48,9 @@ class App extends Component {
             getPersonImage,
             getStarshipImage,
             getPlanet,
-            getPlanetImage
+            getPlanetImage,
+            getAllPeople,
+            getAllPlanets
         } = this.swapiService;
 
         const personDetails = (
@@ -84,24 +86,37 @@ class App extends Component {
             </ItemDetails>
         );
 
-
         return (
             <ErrorBoundry>
                 <div className="stardb-app">
-                    {/*<Header />*/}
+                    {/*<Header/>*/}
                     {planet}
+                    <ItemList
+                        getData={getAllPeople}
+                        onItemSelected={()=>{}}>
+
+                        {({name})=><span>{ name }</span>}
+                    </ItemList>
+                    <ItemList
+                        getData={getAllPlanets}
+                        onItemSelected={()=>{}}>
+
+                        {({name})=><span>{ name }</span>}
+                    </ItemList>
+
                     {/*<div className='row mb-2 button-row'>*/}
                     {/*    <button*/}
                     {/*        className="toggle-planet btn btn-warning btn-lg"*/}
                     {/*        onClick={this.toggleRandomPlanet}>*/}
                     {/*        Toggle Random Planet*/}
                     {/*    </button>*/}
-                    <Row left={personDetails}
-                         right={starshipDetails}/>
-                    {/*<ErrorButton/>*/}
+                    {/*</div>*/}
+                        {/*<Row left={personDetails}*/}
+                        {/*     right={starshipDetails}/>*/}
+                    {/*<Row left={peopleList}*/}
+                    {/*     right={personDetails}/>*/}
+                    {/*<PeoplePage/>*/}
                 </div>
-
-                {/*<PeoplePage/>*/}
             </ErrorBoundry>
         );
     }
