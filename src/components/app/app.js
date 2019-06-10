@@ -28,10 +28,6 @@ class App extends Component {
 
     };
 
-    onServiceChange = () =>{
-
-    };
-
     toggleRandomPlanet = () => {
         this.setState((state) => {
             return {
@@ -58,7 +54,7 @@ class App extends Component {
             <ErrorBoundry>
                 <SwapiServiceProvider value={this.swapiService}>
                     <div className="stardb-app">
-                        <Header onServiceChange={this.onServiceChange}/>
+                        <Header/>
                         {planet}
                         <div className='row'>
                             <div className='col-md-4 col-12 col-sm-6'>
