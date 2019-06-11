@@ -6,12 +6,15 @@ import ErrorIndicator from "../error-indicator";
 import ErrorBoundry from "../error-boundry";
 import { SwapiServiceProvider } from '../swapi-service-context';
 import Header from '../header';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
 
 import {
     PersonList,
     PlanetList,
     StarshipList
 } from '../sw-components';
+
 import {
     PersonDetails,
     PlanetDetails,
@@ -53,26 +56,16 @@ class App extends Component {
         return (
             <ErrorBoundry>
                 <SwapiServiceProvider value={this.swapiService}>
-                    <div className="stardb-app">
-                        <Header/>
-                        {planet}
-                        <div className='row'>
-                            <div className='col-md-4 col-12 col-sm-6'>
-                                <PersonDetails itemId={11}/>
-                            </div>
-                            <div className='col-md-4 col-12 col-sm-6'>
-                                <StarshipDetails itemId={5}/>
-                            </div>
-                            <div className='col-md-4 col-12 col-sm-6'>
-                                <PlanetDetails itemId={14}/>
-                            </div>
+                    <Router>
+                        <div className="stardb-app">
+                            <Header/>
+                            <RandomPlanet/>
+                            <Route path='/' exact render={()=><h1>Welcome to Star DB</h1>}/>
+                            <Route path='/people' component={PeoplePage}/>
+                            <Route path='/planets' component={PlanetsPage}/>
+                            <Route path='/starships' component={StarshipsPage}/>
                         </div>
-                        <PersonList/>
-
-                        <StarshipList/>
-
-                        <PlanetList/>
-                    </div>
+                    </Router>
                 </SwapiServiceProvider>
             </ErrorBoundry>
         );
