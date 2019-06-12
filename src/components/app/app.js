@@ -5,12 +5,9 @@ import RandomPlanet from '../random-planet';
 import ErrorBoundry from '../error-boundry';
 import SwapiService from '../../services/swapi-service';
 import DummySwapiService from '../../services/dummy-swapi-service';
-
 import { PeoplePage, PlanetsPage, StarshipsPage, LoginPage, SecretPage } from '../pages';
 import { SwapiServiceProvider } from '../swapi-service-context';
-
 import './app.css';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import StarshipDetails from "../sw-components/starship-details";
 
@@ -22,9 +19,11 @@ export default class App extends Component {
   };
 
   onLogin = () => {
-   this.setState({
-     isLoggedIn: true
-   })
+   this.setState((prevState)=>{
+       return {
+           isLoggedIn: !prevState.isLoggedIn
+       }
+      })
   };
 
   onServiceChange = () => {
